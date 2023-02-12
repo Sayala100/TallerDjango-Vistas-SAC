@@ -1,3 +1,4 @@
+from variables.logic.variables_logic import get_variable
 from ..models import Measurement
 
 def get_measurements():
@@ -13,13 +14,12 @@ def update_measurement(var_pk, new_var):
     measurement.value = new_var["value"]
     measurement.unit = new_var["unit"]
     measurement.place = new_var["place"]
-    measurement.dateTime = new_var["dateTime"]
-    measurement.variable = new_var["variable"]
+    measurement.variable = get_variable(new_var["variable"])
     measurement.save()
     return measurement
 
 def create_Measurement(var):
-    measurement = Measurement(value=var["value"], unit=var["unit"], place=var["place"], dateTime=var["dateTime"], variable=var["variable"])
+    measurement = Measurement(value=var["value"], unit=var["unit"], place=var["place"], dateTime=var["dateTime"], variable=get_variable(var["variable"]))
     measurement.save()
     return measurement
 
