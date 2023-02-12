@@ -18,3 +18,4 @@ def create_variable(var):
     variable = Variable(name=var["name"])
     variable.save()
     return variable
+
